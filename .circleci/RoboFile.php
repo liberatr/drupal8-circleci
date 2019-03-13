@@ -102,7 +102,7 @@ class RoboFile extends \Robo\Tasks
         $tasks[] = $this->taskFilesystemStack()
             ->copy('.circleci/config/settings.local.php', 'web/sites/default/settings.local.php', $force);
         $tasks[] = $this->taskExec('wget -O dump.sql ' . getenv('DB_DUMP_URL'));
-        $tasks[] = $this->drush()->rawArg('sql-cli < dump.sql');
+        $tasks[] = $this->taskExec('mysql -h 127.0.0.1 -u root drupal8 < dump.sql');
         return $tasks;
     }
 
