@@ -172,6 +172,7 @@ class RoboFile extends \Robo\Tasks
 
         $task = $this->drush()
             ->args('site-install')
+            ->args('config_installer')
             ->option('verbose')
             ->option('yes')
             ->option('db-url', static::DB_URL, '=');

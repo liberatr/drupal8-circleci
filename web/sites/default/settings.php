@@ -297,7 +297,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'IrxQmAt1ahurg-rY9nRR1_Nu9rBye9VccWY1IZhZTrdVYYA3hmDvgGYMvl8ql4kwB858dFwNug';
+$settings['hash_salt'] = 'v8RzzHVPEZ1iXsBfi93cggCqaDwQRNQ1KVlv44etTz39SOSnAJ6P3J_kwiz9y1GSu9xaF3FCqQ';
 
 /**
  * Deployment identifier.
@@ -772,7 +772,7 @@ $settings['file_scan_ignore_directories'] = [
 $settings['entity_update_batch_size'] = 50;
 
 $config_directories['sync'] = '../config/sync';
-$settings['install_profile'] = 'standard';
+$settings['install_profile'] = 'config_installer';
 
 /**
  * Load local development override configuration, if available.
@@ -788,3 +788,13 @@ $settings['install_profile'] = 'standard';
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+$databases['default']['default'] = array (
+  'database' => 'd8circle',
+  'username' => 'root',
+  'password' => 'mysql',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
