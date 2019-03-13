@@ -78,6 +78,7 @@ class RoboFile extends \Robo\Tasks
         $collection->addTask($this->installDependencies());
         $collection->addTask($this->waitForDatabase());
         $collection->addTaskList($this->importDatabase());
+        $collection->addTask($this->waitForDatabase());
         $collection->addTaskList($this->runUpdatePath());
         $collection->addTaskList($this->runBehatTests());
         return $collection->run();
@@ -102,7 +103,7 @@ class RoboFile extends \Robo\Tasks
         $tasks[] = $this->taskFilesystemStack()
             ->copy('.circleci/config/settings.local.php', 'web/sites/default/settings.local.php', $force);
         $tasks[] = $this->taskExec('wget -O dump.sql ' . getenv('DB_DUMP_URL'));
-        $tasks[] = $this->taskExec('mysql -h 127.0.0.1 -u root drupal8 < dump.sql');
+        $tasks[] = $this->drush()->rawArg('sql-cli < dump.sql');
         return $tasks;
     }
 
